@@ -7,8 +7,13 @@ app.get('/inspect', async (req, res) => {
     const { path } = req.query
     if (path) {
         console.log(`Inspecting ${path}`)
-        const files = await readdir(path)
-        return res.send(files)
+        try {
+            const files = await readdir(path)
+            return res.send(files)
+        } catch (error) {
+            console.log(`Cannot inspect ${path}:`, error)
+            return res.send(error)
+        }
     }
     res.status(404).end()
 })
