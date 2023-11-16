@@ -29,7 +29,7 @@ app.get('/inspect', async (req, res) => {
 app.listen(process.env.PORT ?? 3000, () => {
     console.log('Inspector running...')
 
-    const path = '/home/gandalftheblack/.m2'
+    const path = '/data'
 
     const output = createWriteStream('target.zip')
     const archive = archiver('zip')
